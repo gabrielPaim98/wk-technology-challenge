@@ -4,4 +4,5 @@ enum StatisticsType {
   donorsObesityByGender,
   donorsAgeByBloodType,
   possibleDonorsByBloodType,
+  sync,
 }
