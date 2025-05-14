@@ -13,6 +13,8 @@ final class DonorsLoading extends DonorsState {}
 
 final class DonorsSyncing extends DonorsState {}
 
+final class DonorsSyncSuccess extends DonorsState {}
+
 final class DonorsLoadError extends DonorsState {
   final String? message;
   final StatisticsType statisticsType;

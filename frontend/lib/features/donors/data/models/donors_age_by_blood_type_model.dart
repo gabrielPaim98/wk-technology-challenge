@@ -11,14 +11,14 @@ class DonorsAgeByBloodTypeModel {
 
   factory DonorsAgeByBloodTypeModel.fromJson(Map<String, dynamic> json) {
     return DonorsAgeByBloodTypeModel(
-      bloodType: json['blood_type'] as String,
+      bloodType: json['bloodType'] as String,
       averageAge: json['averageAge'] as double,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'blood_type': bloodType,
+      'bloodType': bloodType,
       'averageAge': averageAge,
     };
   }

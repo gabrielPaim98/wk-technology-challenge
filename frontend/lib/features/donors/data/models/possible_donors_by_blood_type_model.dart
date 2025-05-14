@@ -11,15 +11,15 @@ class PossibleDonorsByBloodTypeModel {
 
   factory PossibleDonorsByBloodTypeModel.fromJson(Map<String, dynamic> json) {
     return PossibleDonorsByBloodTypeModel(
-      receptorType: json['receptor_type'] as String,
-      donorCount: json['donor_count'] as int,
+      receptorType: json['receptorType'] as String,
+      donorCount: json['donorCount'] as int,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'receptor_type': receptorType,
-      'donor_count': donorCount,
+      'receptorType': receptorType,
+      'donorCount': donorCount,
     };
   }
 

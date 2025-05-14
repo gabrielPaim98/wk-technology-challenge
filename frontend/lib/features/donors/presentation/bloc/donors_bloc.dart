@@ -58,7 +58,7 @@ class DonorsBloc extends Bloc<DonorsEvent, DonorsState> {
         );
       },
       (success) {
-        emit(DonorsInitial());
+        emit(DonorsSyncSuccess());
       },
     );
   }

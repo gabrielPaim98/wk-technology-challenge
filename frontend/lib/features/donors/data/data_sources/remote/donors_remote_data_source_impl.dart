@@ -17,12 +17,12 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
 
   const DonorsRemoteDataSourceImpl({
     required this.client,
-    this.baseUrl = 'https://example.com/donors',
+    this.baseUrl = 'http://10.0.2.2:8080/donors',
   });
 
-  Future<List<Map<String, dynamic>>> getDonorsData() async {
+  Future<List<dynamic>> getDonorsData() async {
     final String response = await rootBundle.loadString('assets/donors.json');
-    final List<Map<String, dynamic>> data = jsonDecode(response);
+    final List<dynamic> data = jsonDecode(response);
     return data;
   }
 
@@ -32,7 +32,9 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
 
     final url = Uri.parse(baseUrl);
 
-    final response = await client.put(url, body: jsonEncode(body));
+    final response = await client.put(url, body: jsonEncode(body), headers: {
+      'Content-Type': 'application/json',
+    });
 
     if (response.statusCode != 200) {
       throw ServerException(
@@ -53,9 +55,10 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final jsonMap = jsonDecode(response.body) as List<Map<String, dynamic>>;
+      final jsonMap = jsonDecode(response.body) as List<dynamic>;
       return jsonMap
-          .map((json) => DonorsAgeByBloodTypeModel.fromJson(json))
+          .map((json) =>
+              DonorsAgeByBloodTypeModel.fromJson(json as Map<String, dynamic>))
           .toList();
     } else {
       throw ServerException(
@@ -76,7 +79,7 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final jsonMap = jsonDecode(response.body) as List<Map<String, dynamic>>;
+      final jsonMap = jsonDecode(response.body) as List<dynamic>;
       return jsonMap.map((json) => DonorsByAgeModel.fromJson(json)).toList();
     } else {
       throw ServerException(
@@ -97,7 +100,7 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final jsonMap = jsonDecode(response.body) as List<Map<String, dynamic>>;
+      final jsonMap = jsonDecode(response.body) as List<dynamic>;
       return jsonMap.map((json) => DonorsByStateModel.fromJson(json)).toList();
     } else {
       throw ServerException(
@@ -118,7 +121,7 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final jsonMap = jsonDecode(response.body) as List<Map<String, dynamic>>;
+      final jsonMap = jsonDecode(response.body) as List<dynamic>;
       return jsonMap
           .map((json) => DonorsObesityByGenderModel.fromJson(json))
           .toList();
@@ -141,7 +144,7 @@ class DonorsRemoteDataSourceImpl implements DonorsRemoteDataSource {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      final jsonMap = jsonDecode(response.body) as List<Map<String, dynamic>>;
+      final jsonMap = jsonDecode(response.body) as List<dynamic>;
       return jsonMap
           .map((json) => PossibleDonorsByBloodTypeModel.fromJson(json))
           .toList();
