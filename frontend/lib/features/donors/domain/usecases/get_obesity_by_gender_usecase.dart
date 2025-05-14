@@ -9,13 +9,14 @@ import '../parameters/get_statistics_parameters.dart';
 import '../repositories/donors_repository.dart';
 
 class GetObesityByGenderUsecase
-    implements AsyncUsecase<DonorsObesityByGender, GetStatisticsParameters> {
+    implements
+        AsyncUsecase<List<DonorsObesityByGender>, GetStatisticsParameters> {
   final DonorsRepository repository;
 
   const GetObesityByGenderUsecase(this.repository);
 
   @override
-  Future<Either<Failure, DonorsObesityByGender>> call(
+  Future<Either<Failure, List<DonorsObesityByGender>>> call(
       GetStatisticsParameters params) async {
     try {
       if (params.type != StatisticsType.donorsObesityByGender) {

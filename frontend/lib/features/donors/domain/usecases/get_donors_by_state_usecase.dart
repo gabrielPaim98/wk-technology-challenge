@@ -9,13 +9,13 @@ import '../parameters/get_statistics_parameters.dart';
 import '../repositories/donors_repository.dart';
 
 class GetDonorsByStateUsecase
-    implements AsyncUsecase<DonorsByState, GetStatisticsParameters> {
+    implements AsyncUsecase<List<DonorsByState>, GetStatisticsParameters> {
   final DonorsRepository repository;
 
   const GetDonorsByStateUsecase(this.repository);
 
   @override
-  Future<Either<Failure, DonorsByState>> call(
+  Future<Either<Failure, List<DonorsByState>>> call(
       GetStatisticsParameters params) async {
     try {
       if (params.type != StatisticsType.donorsByState) {

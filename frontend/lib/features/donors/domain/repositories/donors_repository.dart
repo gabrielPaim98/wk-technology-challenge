@@ -9,9 +9,9 @@ import '../entities/possible_donors.dart';
 
 abstract class DonorsRepository {
   Future<Either<Failure, void>> syncDonors();
-  Future<Either<Failure, DonorsAgeByType>> getDonorsAgeByType();
-  Future<Either<Failure, DonorsByAge>> getDonorsByAge();
-  Future<Either<Failure, DonorsByState>> getDonorsByState();
-  Future<Either<Failure, DonorsObesityByGender>> getObesityByGender();
-  Future<Either<Failure, PossibleDonors>> getPossibleDonors();
+  Future<Either<Failure, List<DonorsAgeByType>>> getDonorsAgeByType();
+  Future<Either<Failure, List<DonorsByAge>>> getDonorsByAge();
+  Future<Either<Failure, List<DonorsByState>>> getDonorsByState();
+  Future<Either<Failure, List<DonorsObesityByGender>>> getObesityByGender();
+  Future<Either<Failure, List<PossibleDonors>>> getPossibleDonors();
 }
